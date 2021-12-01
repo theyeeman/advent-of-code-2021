@@ -5,12 +5,17 @@ def getInput(filename):
 if __name__ == "__main__":
     depths = getInput('input.txt')
     num_increase = 0
-    prev_depth = depths[0] + depths[1] + depths[2]
+    sliding_window_size = 3
 
-    for i in range(3, len(depths)):
-        curr_depth = depths[i] + depths[i - 1] + depths[i - 2]
+    for i in range(0, len(depths) - sliding_window_size):
+        prev_depth = 0
+        curr_depth = 0
+
+        for j in range(sliding_window_size):
+            prev_depth += depths[i + j]
+            curr_depth += depths[i + j + 1]
+        
         if curr_depth > prev_depth:
             num_increase += 1
-        prev_depth = curr_depth
 
     print(num_increase)
