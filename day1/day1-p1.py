@@ -14,7 +14,7 @@ def main():
 
 def get_input(filename):
     with open(filename) as f:
-        return list((f.read()).split("\n"))
+        return list(map(lambda a : int(a), list((f.read()).split("\n"))))
 
 def print_performance(start, end):
     print('Execution time (s):', round((end - start), 3))
