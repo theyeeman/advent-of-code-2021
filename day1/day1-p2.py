@@ -1,9 +1,9 @@
-def getInput(filename):
+def get_input(filename):
     with open(filename) as f:
         return list(map(lambda a : int(a), list((f.read()).split("\n"))))
 
 if __name__ == "__main__":
-    depths = getInput('input.txt')
+    depths = get_input('input.txt')
     num_increase = 0
     sliding_window_size = 3
 
