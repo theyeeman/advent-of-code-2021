@@ -6,14 +6,9 @@ def main():
     sliding_window_size = 3
 
     for i in range(0, len(depths) - sliding_window_size):
-        prev_depth = 0
-        curr_depth = 0
-
-        for j in range(sliding_window_size):
-            prev_depth += depths[i + j]
-            curr_depth += depths[i + j + 1]
-        
-        if curr_depth > prev_depth:
+    
+        # Only need to look at first value of previous depth and last value of curr depth since the overlapped values add same amount to previous and curr depth sums
+        if depths[i + sliding_window_size] > depths[i]:
             num_increase += 1
 
     print(num_increase)
