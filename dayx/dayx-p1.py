@@ -1,15 +1,20 @@
 import time
 
 def main():
-    # inputs = get_input('test.txt')
-    inputs = get_input('input.txt')
+    # inputs = get_input_as_str('input.txt')
+    inputs = get_input_as_str('test.txt')
+    
     # Code goes here
 
 # Boilerplate code below
 
-def get_input(filename):
+def get_input_as_int(filename):
     with open(filename) as f:
         return list(map(lambda a : int(a), list((f.read()).split("\n"))))
+
+def get_input_as_str(filename):
+    with open(filename) as f:
+        return list((f.read()).split("\n"))
 
 def print_performance(start, end):
     print('Execution time (s):', round((end - start), 3))
