@@ -32,8 +32,6 @@ def get_bingo_boards(l):
     curr_board = []
 
     for row in l[2:]:
-        #print(f'curr row {l[row]}')
-
         if row == '':
             board_list.append(curr_board.copy())
             curr_board.clear()
