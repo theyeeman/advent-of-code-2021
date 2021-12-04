@@ -1,5 +1,6 @@
 import time
 
+
 def get_oxygen_rating(inputs):
     for i in range(len(inputs[0])):
         if len(inputs) == 1:
@@ -10,6 +11,7 @@ def get_oxygen_rating(inputs):
 
     return inputs[0]
 
+
 def get_scrubber_rating(inputs):
     for i in range(len(inputs[0])):
         if len(inputs) == 1:
@@ -19,6 +21,7 @@ def get_scrubber_rating(inputs):
         remove_row(inputs, i, remove_digit)
 
     return inputs[0]
+
 
 def get_most_common_bin_digit(inputs, char_pos):
     num_0 = 0
@@ -35,6 +38,7 @@ def get_most_common_bin_digit(inputs, char_pos):
     else:
         return '1'
 
+
 def get_least_common_bin_digit(inputs, char_pos):
     num_0 = 0
     num_1 = 0
@@ -50,6 +54,7 @@ def get_least_common_bin_digit(inputs, char_pos):
     else:
         return '1'
 
+
 def remove_row(inputs, char_pos, bin_val):
     i = 0
 
@@ -58,6 +63,7 @@ def remove_row(inputs, char_pos, bin_val):
             inputs.pop(i)
         else:
             i += 1
+
 
 def main():
     inputs = get_input_as_str('input.txt')
@@ -69,8 +75,8 @@ def main():
 
     print(oxygen_rating * scrubber_rating)
 
-# Boilerplate code below
 
+# Boilerplate code below
 def get_input_as_int(filename):
     with open(filename) as f:
         return list(map(lambda a : int(a), list((f.read()).split("\n"))))
