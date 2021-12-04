@@ -32,8 +32,6 @@ def get_bingo_boards(l):
     curr_board = []
 
     for row in l[2:]:
-        #print(f'curr row {l[row]}')
-
         if row == '':
             board_list.append(curr_board.copy())
             curr_board.clear()
@@ -41,7 +39,7 @@ def get_bingo_boards(l):
         else:
             curr_board.append(_format_bingo_row(row))
 
-    board_list.append(curr_board.copy())  # Append last board
+    board_list.append(curr_board.copy())  # Append last remaining board
     return board_list
 
 
@@ -70,7 +68,6 @@ def get_board_score(board, win_num):
     return score * win_num
 
 
-
 def main():
     inputs = standard_func.get_input_as_str('input.txt')
     # inputs = standard_func.get_input_as_str('test.txt')
@@ -82,21 +79,16 @@ def main():
         for board in bingo_boards:
             mark_board(board, num)
 
-        for i in range(len(bingo_boards)):
+        i = 0
+        while i < len(bingo_boards):
             if has_line(bingo_boards[i]):
-                if len(bingo_boards) > 1:
-                    bingo_boards.pop(i)
-                    break
-                else:
-                    last_board = bingo_boards[i].copy()
-        
-        if len(bingo_boards) == 1 and has_line(bingo_boards[0]):
-            last_bingo_num = num
-            break
-    
-    print_bingo_board(bingo_boards[0])
-    print('last bingo num', last_bingo_num)
-    print(get_board_score(bingo_boards[0], last_bingo_num))
+                last_popped = bingo_boards[i].copy()
+                last_num_to_pop = num
+                bingo_boards.pop(i)
+            else:
+                i += 1
+
+    print(get_board_score(last_popped, last_num_to_pop))
 
 
 # Boilerplate code below
