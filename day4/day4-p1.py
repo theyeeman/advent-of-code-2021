@@ -68,7 +68,6 @@ def get_board_score(board, win_num):
     return score * win_num
 
 
-
 def main():
     inputs = standard_func.get_input_as_str('input.txt')
     # inputs = standard_func.get_input_as_str('test.txt')
