@@ -41,7 +41,7 @@ def get_bingo_boards(l):
         else:
             curr_board.append(_format_bingo_row(row))
 
-    board_list.append(curr_board.copy())  # Get last board
+    board_list.append(curr_board.copy())  # Append last board
     return board_list
 
 
@@ -79,8 +79,6 @@ def main():
     bingo_boards = get_bingo_boards(inputs)
     winning_board = None
 
-    # print(bingo_nums)
-
     for num in bingo_nums:
         for board in bingo_boards:
             mark_board(board, num)
@@ -93,36 +91,7 @@ def main():
         if winning_board is not None:
             break
 
-    # print('winning num', winning_num)
-    # print_bingo_board(winning_board)
     print(get_board_score(winning_board, winning_num))
-
-    # mark_board(bingo_boards[0], 22)
-    # mark_board(bingo_boards[0], 8)
-    # mark_board(bingo_boards[0], 21)
-    # mark_board(bingo_boards[0], 6)
-    # mark_board(bingo_boards[0], 1)
-
-    # print('after mark')
-    # print_bingo_board(bingo_boards[0])
-    # print(has_line(bingo_boards[0]))
-
-    # print('before transpose')
-    # print_bingo_board(bingo_boards[0])
-    # temp = zip(*bingo_boards[0])
-    # print('after transpose')
-    # print_bingo_board(temp)
-
-    # print('before mark')
-    # print_bingo_board(bingo_boards[0])
-    # mark_board(bingo_boards[0], 14)
-    # print('after mark')
-    # print_bingo_board(bingo_boards[0])
-
-    # print(bingo_nums)
-    # for board in bingo_boards:
-    #     print_bingo_board(board)
-    #     print()
 
 
 # Boilerplate code below
