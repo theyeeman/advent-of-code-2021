@@ -87,6 +87,8 @@ def main():
                 if len(bingo_boards) > 1:
                     bingo_boards.pop(i)
                     break
+                else:
+                    last_board = bingo_boards[i].copy()
         
         if len(bingo_boards) == 1 and has_line(bingo_boards[0]):
             last_bingo_num = num
