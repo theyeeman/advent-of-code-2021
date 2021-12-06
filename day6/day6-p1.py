@@ -5,83 +5,33 @@ def parse_input(inputs):
     return list(map(lambda a : int(a), inputs[0].split(',')))
 
 
-def get_fish_dict(fish_input):
-    fish_dict = {
-        0: 0,
-        1: 0,
-        2: 0,
-        3: 0,
-        4: 0,
-        5: 0,
-        6: 0,
-        7: 0,
-        8: 0,
-    }
+def get_fish_list(fish_input):
+    fish_list = [0] * 9
 
     for day in fish_input:
-        fish_dict[day] += 1
+        fish_list[day] += 1
 
-    return fish_dict
-
-
-def process_dict(d):
-    day_0 = d[0]
-
-    for i in range(0, 8):
-        d[i] = d[i + 1]
-
-    d[8] = day_0
-    d[6] += day_0
-
-    # d_new = {
-    #     0: 0,
-    #     1: 0,
-    #     2: 0,
-    #     3: 0,
-    #     4: 0,
-    #     5: 0,
-    #     6: 0,
-    #     7: 0,
-    #     8: 0,
-    # }
-
-    # for i in range(7, -1, -1):
-    #     d_new[i] = d_old[i + 1]
-
-    # d_new[8] = d_old[0]
-    # d_new[6] += d_old[0]
-
-    # return d_new
+    return fish_list
 
 
-    # for i in range(8, 0, -1):
-    #     amount = d[i]
-    #     d[i] -= amount
-    #     d[i - 1] += amount
-
-    # amount = d[0]
-    # d[0] -= amount
-    # d[8] += amount
-    # d[6] += amount
-
-
-def sum_fish(d):
-    return sum(d.values())
+def process_list(fish):
+    day_0 = fish[0]
+    fish.pop(0)
+    fish.append(day_0)
+    fish[6] += day_0
 
 
 def main():
-    # inputs = standard_func.get_input_as_str('input.txt')
-    inputs = standard_func.get_input_as_str('test.txt')
+    inputs = standard_func.get_input_as_str('input.txt')
+    # inputs = standard_func.get_input_as_str('test.txt')
     fish_input = parse_input(inputs)
-    fish_dict = get_fish_dict(fish_input)
-    days = 18
-    # print(fish_input)
-    # print(fish_dict)
+    fish_list = get_fish_list(fish_input)
+    days = 80
 
     for _ in range(days):
-        process_dict(fish_dict)
+        process_list(fish_list)
 
-    print(sum_fish(fish_dict))
+    print(sum(fish_list))
 
 
 # Boilerplate code below
