@@ -37,7 +37,7 @@ def parse_input_row(row):
     return (int(x1), int(y1), int(x2), int(y2))
 
 
-def print_dict(d):
+def print_dict(d):  # For debugging
     for k in d.keys():
         print(f'{k} : {d[k]}')
 
