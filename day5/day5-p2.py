@@ -22,49 +22,27 @@ def plot_horizontal(coords, x1, y1, x2, y2):
 
 
 def plot_diagonal(coords, x1, y1, x2, y2):  # Diagonals are only at 45 degree angles
-    # distance = abs(x1 - x2)
-
-    # if x1 < x2 and y1 < y2:
-    #     for i in range(distance + 1):
-    #         coords.setdefault((x1 + i, y1 + i), 0)
-    #         coords[(x1 + i, y1 + i)] += 1
-
-    # elif x1 < x2 and y1 > y2:
-    #     for i in range(distance + 1):
-    #         coords.setdefault((x1 + i, y2 + 1), 0)
-    #         coords[(x1 + i, y2 + 1)] += 1
-
-    # elif x1 > x2 and y1 < y2:
-    #     for i in range(distance + 1):
-    #         coords.setdefault((x2 + i, y1 + i), 0)
-    #         coords[(x2 + i, y1 + i)] += 1
-    # else:
-    #     for i in range(distance + 1):
-    #         coords.setdefault((x2 + i, y2 + i), 0)
-    #         coords[(x2 + i, y2 + i)] += 1
-    x = x1
-    y = y1
     distance = abs(x1 - x2)
 
     if x1 < x2 and y1 < y2:
         for i in range(distance + 1):
-            coords.setdefault((x + i, y + i), 0)
-            coords[(x + i, y + i)] += 1
+            coords.setdefault((x1 + i, y1 + i), 0)
+            coords[(x1 + i, y1 + i)] += 1
 
     elif x1 < x2 and y1 > y2:
         for i in range(distance + 1):
-            coords.setdefault((x + i, y - i), 0)
-            coords[(x + i, y - i)] += 1
+            coords.setdefault((x1 + i, y1 - i), 0)
+            coords[(x1 + i, y1 - i)] += 1
 
     elif x1 > x2 and y1 < y2:
         for i in range(distance + 1):
-            coords.setdefault((x - i, y + i), 0)
-            coords[(x - i, y + i)] += 1
+            coords.setdefault((x1 - i, y1 + i), 0)
+            coords[(x1 - i, y1 + i)] += 1
     else:
         for i in range(distance + 1):
-            coords.setdefault((x - i, y - i), 0)
-            coords[(x - i, y - i)] += 1
-
+            coords.setdefault((x1 - i, y1 - i), 0)
+            coords[(x1 - i, y1 - i)] += 1    
+    
 
 def is_vertical(x1, y1, x2, y2):
     return x1 == x2
