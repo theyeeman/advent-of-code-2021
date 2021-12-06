@@ -49,12 +49,6 @@ def main():
     count = 0
     
     for input in inputs:
-        # x1, y1, x2, y2 = parse_input_row(input)
-
-        # if is_horizontal(x1, y1, x2, y2):
-        #     print(f'{x1} {y1} {x2} {y2} horizontal')
-        # elif is_vertical(x1, y1, x2, y2):
-        #     print(f'{x1} {y1} {x2} {y2} vertical')
         x1, y1, x2, y2 = parse_input_row(input)
 
         if is_horizontal(x1, y1, x2, y2):
@@ -63,8 +57,6 @@ def main():
             plot_vertical(coords, x1, y1, x2, y2)
         else:
             continue
-    
-    # print_dict(coords)
 
     for v in coords.values():
         if v >= 2:
