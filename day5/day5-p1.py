@@ -86,14 +86,3 @@ if __name__ == "__main__":
     main()
     perf_counter_end = time.perf_counter()
     standard_func.print_performance(perf_counter_start, perf_counter_end)
-
-'''
-brain storming
-
-parse input into format (x1, y1, x2, y2)
-helper function to check if line horizontal
-helper function to check if line vertical
-helper function to add horizontal line to dict
-helper function to add vertical line to dict
-dictionary with {key, val} = {(coord), count}
-'''
