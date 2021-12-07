@@ -27,7 +27,7 @@ def main():
     crabs = parse_input_to_dict(inputs)
     min_fuel = init_min_fuel(crabs)
 
-    for pos in range(max(crabs.keys()) + 1):
+    for pos in range(min(crabs.keys()), max(crabs.keys()) + 1):
         total_fuel = 0
 
         for key, val in crabs.items():
