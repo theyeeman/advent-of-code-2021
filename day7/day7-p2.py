@@ -32,16 +32,12 @@ def main():
     crabs = parse_input_to_dict(inputs)
     min_fuel = init_min_fuel(crabs)
 
-    for pos in range(max(crabs.keys()) + 1):
+    for pos in range(min(crabs.keys()), max(crabs.keys()) + 1):
         total_fuel = 0
 
         for key, val in crabs.items():
-            temp = 0
-
-            for i in range(1, abs(key - pos) + 1):
-                temp += i
-
-            total_fuel += temp * val
+            n = abs(key - pos)
+            total_fuel += int((n+1) * n * val / 2)
 
         min_fuel = total_fuel if total_fuel < min_fuel else min_fuel
 
