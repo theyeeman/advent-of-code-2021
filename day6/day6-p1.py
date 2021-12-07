@@ -55,11 +55,3 @@ if __name__ == "__main__":
     main()
     perf_counter_end = time.perf_counter()
     standard_func.print_performance(perf_counter_start, perf_counter_end)
-
-'''
-brainstorming
-
-create a dict where {key: val} = {fish timer: num fish}
-each day, just move all the fish from day n to day n-1, and for fish at day 0, set that amount to 0 and add that amount to day 8
-    need to start with highest fish timer value and work down to day 0
-'''
