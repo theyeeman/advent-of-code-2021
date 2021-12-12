@@ -32,18 +32,42 @@ def parse_input_to_grid(inputs):
     return grid
 
 
+def basin_size_dfs(grid, x, y, prev_num):
+    if x < 0 or x >= len(grid) or y < 0 or y >= len(grid[0]):  # Out of bounds
+        return 0
+    elif grid[x][y] < prev_num or grid[x][y] == -1 or grid[x][y] == 9:  # Invalid basin value
+        return 0
+    else:
+        prev = grid[x][y]
+        grid[x][y] = -1
+
+        return (
+            1 
+            + basin_size_dfs(grid, x+1, y, prev)
+            + basin_size_dfs(grid, x-1, y, prev)
+            + basin_size_dfs(grid, x, y+1, prev)
+            + basin_size_dfs(grid, x, y-1, prev)
+        )
+
+
 def main():
     inputs = standard_func.get_input_as_str('input.txt')
     # inputs = standard_func.get_input_as_str('test.txt')
     grid = parse_input_to_grid(inputs)
-    risk_level = 0
+    lowest_pos = []
+    basin_sizes = []
 
     for i in range(len(grid)):
         for j in range(len(grid[0])):
             if is_lowest_adj_num(grid, i, j):
-                risk_level += grid[i][j] + 1
+                lowest_pos.append((i, j))
 
-    print(risk_level)
+    for pos in lowest_pos:
+        x, y = pos
+        basin_sizes.append(basin_size_dfs(grid, x, y, grid[x][y]))
+
+    basin_sizes.sort(reverse=True)
+    print(basin_sizes[0] * basin_sizes[1] * basin_sizes[2])
 
 
 # Boilerplate code below
