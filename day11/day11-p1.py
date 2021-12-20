@@ -78,13 +78,6 @@ def main():
     print(num_flash)
 
 
-
-    # print_grid(grid)
-    # increment_all_cells(grid)
-    # print_grid(grid)
-    # print(get_cells_that_will_flash(grid))
-
-
 # Boilerplate code below
 class standard_func:
     def get_input_as_int(filename):
