@@ -67,22 +67,20 @@ def main():
     # inputs = standard_func.get_input_as_str('test.txt')
     grid = parse_input(inputs)
     num_flash = 0
-    steps = 100
+    step = 0
 
-    for _ in range(steps):
+    while True:
+        step += 1
+        curr_num_flash = num_flash
         increment_all_cells(grid)
         flash = get_cells_that_will_flash(grid)
         num_flash += len(flash)
         num_flash += do_surrounding_flash_cell(grid, flash)
 
-    print(num_flash)
+        if num_flash - curr_num_flash == 100:
+            break
 
-
-
-    # print_grid(grid)
-    # increment_all_cells(grid)
-    # print_grid(grid)
-    # print(get_cells_that_will_flash(grid))
+    print(step)
 
 
 # Boilerplate code below
