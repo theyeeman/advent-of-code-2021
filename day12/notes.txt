@@ -21,10 +21,10 @@ def dfs(curr_cave, all_caves_dict, seen):
     elif (no more caves to visit):
         return 0
     else:
+        if (cave is small letter):
+            seen.add(cave)
+        
         for cave in caves_to_visit:
-            if (cave is small letter):
-                seen.add(cave)
-
             num_paths += dfs(cave, all_caves_dict, seen.copy())
         
         return num_paths
