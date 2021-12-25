@@ -13,9 +13,6 @@ def dfs(curr_cave, all_caves, seen):
     caves_to_visit = get_caves_to_visit(all_caves[curr_cave], seen)
     num_paths = 0
 
-    if is_cave_small_letter(curr_cave):
-        seen.add(curr_cave)
-
     if curr_cave == 'end':
         return 1
     elif len(caves_to_visit) == 0:
