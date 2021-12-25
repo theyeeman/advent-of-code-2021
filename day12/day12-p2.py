@@ -5,40 +5,21 @@ def is_cave_small_letter(cave):
     return cave.islower()
 
 
-def can_visit_small_cave_twice(seen):
-    # print(seen)
-    for key, val in seen.items():
-        if key == 'start':
-            continue
-        if val >= 2:
-            return False
-
-    return True
-
-
 def get_caves_to_visit(cave_list, seen):
     to_visit = []
 
-    if can_visit_small_cave_twice(seen):
-        # print('true')
-        for cave in cave_list:
-            if seen.get(cave, 0) >= 2:
-                continue
+    for cave in cave_list:
+        if seen.get(cave, 0) >= 2:
+            continue
 
-            to_visit.append(cave)
-    else:
-        # print('false')
-        for cave in cave_list:
-            if seen.get(cave, 0) >= 1:
-                continue
-
-            to_visit.append(cave)
+        to_visit.append(cave)
 
     return to_visit
 
 
 def is_too_many_small_caves(seen):
     count = 0
+
     for key, val in seen.items():
         if key == 'start':
             continue
@@ -47,30 +28,24 @@ def is_too_many_small_caves(seen):
 
     return count > 1
 
-def dfs(curr_cave, all_caves, seen, path):
+def dfs(curr_cave, all_caves, seen):
     caves_to_visit = get_caves_to_visit(all_caves[curr_cave], seen)
-    num_paths = 0
-    # print(f'curr_cave {curr_cave}, caves_to_visit {caves_to_visit}, seen {seen}, path {path}')
-    
+    num_paths = 0  
 
     if curr_cave == 'end':
-        # print(path)
         return 1
     elif len(caves_to_visit) == 0:
         return 0
     else:
-        if seen.get(curr_cave, 0) >= 2:
-            return 0
-
         if is_cave_small_letter(curr_cave):
             seen.setdefault(curr_cave, 0)
             seen[curr_cave] += 1
 
-        if is_too_many_small_caves(seen):
+        if is_too_many_small_caves(seen):  # can only visit one small cave twice
             return 0
 
         for cave in caves_to_visit:
-            num_paths += dfs(cave, all_caves, seen.copy(), path + ' ' + cave)
+            num_paths += dfs(cave, all_caves, seen.copy())
         
         return num_paths
 
@@ -95,7 +70,7 @@ def main():
     cave_dict = parse_input(inputs)
     seen = {'start': 1}
 
-    print(dfs('start', cave_dict, seen, 'start'))
+    print(dfs('start', cave_dict, seen))
 
 
 # Boilerplate code below
