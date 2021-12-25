@@ -1,0 +1,30 @@
+- seems like a recursive solution works nicely here
+    - dfs?
+- sets are like lists in the sense that it is passed by reference (or some people say pass by assignment)
+    - modifying a set in a function makes the set actually change
+
+recursive function planning
+- since we can only visit small letters once, need a way to store which small letters have been visited
+    - use set
+    - make helper function to determine if cave is big or small letters
+    - make helper function to determine how many caves are left to visit
+        - takes in dict of all paths and set of seen caves, and from there returns a list of caves that can still be visited
+
+pseudocode?
+
+def dfs(curr_cave, all_caves_dict, seen):
+    num_paths = 0
+    caves_to_visit = (helper function that gets list of caves to visit(all_caves_dict[curr_cave], seen))
+    
+    if (curr_cave is end):
+        return 1
+    elif (no more caves to visit):
+        return 0
+    else:
+        for cave in caves_to_visit:
+            if (cave is small letter):
+                seen.add(cave)
+
+            num_paths += dfs(cave, all_caves_dict, seen.copy())
+        
+        return num_paths
