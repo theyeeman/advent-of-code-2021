@@ -13,23 +13,28 @@ def get_caves_to_visit(cave_list, seen):
         if cave not in seen:
             new_list.append(cave)
 
-    return new_list
+    return sorted(new_list)
 
 
-def dfs(curr_cave, all_caves, seen, num_paths):
-    caves_to_visit = get_caves_to_visit(all_caves[curr_cave], seen)
-    print(f'curr_cave {curr_cave}, caves_to_visit {caves_to_visit}, num_paths {num_paths}')
+def dfs(curr_cave, all_caves, seen, iterloop, path):
+    caves_to_visit = get_caves_to_visit(all_caves[curr_cave], seen)  # if curr_cave != 'end' else []
+    num_paths = 0
+
+    #print(f'curr_cave {curr_cave}, caves_to_visit {caves_to_visit}, iterloop {iterloop}, path {path}')
+    #print(path)
+    if is_cave_small_letter(curr_cave):
+        seen.add(curr_cave)
 
     if curr_cave == 'end':
+        #print('end reached')
+        #print(path)
         return 1
     elif len(caves_to_visit) == 0:
+        #print('stuck')
         return 0
     else:
         for cave in caves_to_visit:
-            if is_cave_small_letter(cave):
-                seen.add(cave)
-
-            num_paths += dfs(cave, all_caves, seen.copy(), num_paths)
+            num_paths += dfs(cave, all_caves, seen.copy(), iterloop + 1, path + ' ' + cave)
         
         return num_paths
 
@@ -55,12 +60,8 @@ def main():
     seen = set(['start'])
 
     print(cave_dict)
-    print(dfs('start', cave_dict, seen, 0))
+    print(dfs('start', cave_dict, seen, 0, 'start'))
 
-    
-    # print(is_cave_small_letter('asdasd'))
-    # print(is_cave_small_letter('UYY'))
-    # print(get_caves_to_visit(['start', 'c', 'b', 'end'], set(['start', 'b'])))
 
 # Boilerplate code below
 class standard_func:
