@@ -1,0 +1,12 @@
+brainstorming
+
+- seems like i only need to fold paper up or to the left
+    - this implies that the folding edge is always greater than or equal to the halfway point of the x and y axes
+
+pseudocode
+
+- parse input into (x,y) coordinates and store in set
+- parse input into (x/y, pos) for fold lines
+- create function for left fold and up fold
+    - general function idea is that any point that is past the fold line, create a new pos of where it would be when folded and add to set
+        - use a set so i dont need to worry about duplicates
