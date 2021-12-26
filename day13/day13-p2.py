@@ -58,14 +58,13 @@ def fold_up(pos, y_line):
 
 
 def draw_grid(pos):
-    pos_list = sorted(list(pos))
-    max_x = max(pos_list, key=lambda p : p[0])[0] + 1
-    max_y = max(pos_list, key=lambda p : p[1])[1] + 1
+    max_x = max(pos, key=lambda p : p[0])[0] + 1
+    max_y = max(pos, key=lambda p : p[1])[1] + 1
     
     for j in range(max_y):
         row = ''
         for i in range(max_x):
-            if (i, j) in pos_list:
+            if (i, j) in pos:
                 row += '#'
             else:
                 row += '.'
@@ -78,19 +77,14 @@ def main():
     # inputs = standard_func.get_input_as_str('test.txt')
     
     pos, folds = parse_input(inputs)
-    # draw_grid(pos)
     
     for fold_line, line_num in folds:
         if fold_line == 'y':
-            # print('\nfold up at y=', line_num, '\n')
             fold_up(pos, line_num)
         else:
-            # print('\nfold left at x=', line_num, '\n')
             fold_left(pos, line_num)
-        
-        print(len(pos))
 
-    # draw_grid(pos)
+    draw_grid(pos)
 
 
 # Boilerplate code below
