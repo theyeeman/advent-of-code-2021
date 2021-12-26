@@ -89,8 +89,7 @@ def main():
             fold_left(pos, line_num)
         
         print(len(pos))
-
-    # draw_grid(pos)
+        break
 
 
 # Boilerplate code below
