@@ -2,20 +2,22 @@ import time
 
 
 def parse_input(inputs, letter_count):
-    for char in inputs[0]:
+    poly_string = inputs[0]
+
+    for char in poly_string:
         letter_count.setdefault(char, 0)
         letter_count[char] += 1
 
-    curr_pairs = parse_poly_string_to_pairs(inputs[0])
-    pair_insert = {}
+    curr_pairs = parse_poly_string_to_pairs(poly_string)
+    pair_insert_rule = {}
 
     for input in inputs:
         test = input.split(' -> ')
 
         if len(test) == 2:
-            pair_insert.update({test[0]: test[1]})
+            pair_insert_rule.update({test[0]: test[1]})
 
-    return curr_pairs, pair_insert
+    return curr_pairs, pair_insert_rule
 
 
 def parse_poly_string_to_pairs(poly_string):
@@ -29,49 +31,42 @@ def parse_poly_string_to_pairs(poly_string):
     return pairs
 
 
-def get_new_pairs(curr_pair, pair_insert, letter_count, val):
+def get_new_pairs(curr_pair, pair_insert, letter_count, pair_count):
     insert_letter = pair_insert[curr_pair]
-    # print('adding', insert_letter, 'to insert_letter')
     letter_count.setdefault(insert_letter, 0)
-    letter_count[insert_letter] += val
+    letter_count[insert_letter] += pair_count
 
-    return [curr_pair[0]+insert_letter, insert_letter+curr_pair[1]]
+    return [curr_pair[0] + insert_letter, insert_letter + curr_pair[1]]
 
 
 def get_least_and_most_common_letter_count(letter_count):
     least_counted_letter = min(letter_count, key=lambda key: letter_count[key])
     most_counted_letter = max(letter_count, key=lambda key: letter_count[key])
-    print(least_counted_letter, most_counted_letter)
 
     return letter_count[least_counted_letter], letter_count[most_counted_letter]
 
 
 def main():
-    # inputs = standard_func.get_input_as_str('input.txt')
-    inputs = standard_func.get_input_as_str('test.txt')
+    inputs = standard_func.get_input_as_str('input.txt')
+    # inputs = standard_func.get_input_as_str('test.txt')
+    letter_count = {}  # letter_count is injected into functions parse_input and get_new_pairs to keep track of number of letters
+    curr_pairs_dict, pair_insert_rules = parse_input(inputs, letter_count)
     steps = 10
     temp_dict = {}
-    letter_count = {}
-    curr_pairs, pair_insert = parse_input(inputs, letter_count)
 
     for _ in range(steps):
-        # print('step', _)
-        # print('letter_count', letter_count)
-        # print('curr_pairs', curr_pairs)
-        for curr_pair, val in curr_pairs.items():
-            new_pairs = get_new_pairs(curr_pair, pair_insert, letter_count, val)
+        for curr_pair, curr_pair_count in curr_pairs_dict.items():
+            new_pairs = get_new_pairs(curr_pair, pair_insert_rules, letter_count, curr_pair_count)
             
             for pair in new_pairs:
                 temp_dict.setdefault(pair, 0)
-                temp_dict[pair] += val
+                temp_dict[pair] += curr_pair_count
 
-        
-        curr_pairs = temp_dict.copy()
+        curr_pairs_dict = temp_dict.copy()
         temp_dict.clear()
 
-    # print('letter_count', letter_count)
-    # print('curr_pairs', curr_pairs)
-    print(get_least_and_most_common_letter_count(letter_count))
+    least_count, most_count = get_least_and_most_common_letter_count(letter_count)
+    print(most_count - least_count)
 
 
 # Boilerplate code below
