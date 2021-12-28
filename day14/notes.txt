@@ -1,7 +1,10 @@
 - don't actually create the string since it increases exponentially in length
 - use a dictionary to store current pairs, and from there, can calculate new pairs for next iteration?
+- can also use another dict to store the count of each letter
 
 steps
 - parse input into current pairs dict and dict that has pair insertion rules
 - for each key:value in current pairs dict, get the new pairs and store into a temp dict with value same as current pairs dict value
+    - when calculating new pairs, add the inserted letter to the dictionary that keeps track of how many letters there are
+        - the difference in each iteration is the inserted letters for the pairs, so if we keep add inserted letters to letters dict, then letters dict will have count of all letters
 - set current pairs dict equal to temp dict and clear temp dict
