@@ -1,0 +1,7 @@
+- don't actually create the string since it increases exponentially in length
+- use a dictionary to store current pairs, and from there, can calculate new pairs for next iteration?
+
+steps
+- parse input into current pairs dict and dict that has pair insertion rules
+- for each key:value in current pairs dict, get the new pairs and store into a temp dict with value same as current pairs dict value
+- set current pairs dict equal to temp dict and clear temp dict
